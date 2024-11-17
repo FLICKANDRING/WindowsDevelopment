@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
+п»ї#define _CRT_SECURE_NO_WARNINGS
 #include <Windows.h>
 #include "resource.h"
 #include <cstdio>
@@ -45,7 +45,7 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 				SendMessage(hListBox, LB_GETTEXT, i, (LPARAM)sz_buffer);
 
 				CHAR sz_message[SIZE]{};
-				sprintf(sz_message, "Вы выбрали элемент №%i со значением \"%s\".", i, sz_buffer);
+				sprintf(sz_message, "Р’С‹ РІС‹Р±СЂР°Р»Рё СЌР»РµРјРµРЅС‚ в„–%i СЃРѕ Р·РЅР°С‡РµРЅРёРµРј \"%s\".", i, sz_buffer);
 				MessageBox(hwnd, sz_buffer, "Info", MB_OK | MB_ICONINFORMATION);
 
 
@@ -72,26 +72,26 @@ BOOL CALLBACK DlgProcAddItem(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		{
 		case IDOK:
 		{
-			// 1) Читаем текст из EditControl:
+			// 1) Р§РёС‚Р°РµРј С‚РµРєСЃС‚ РёР· EditControl:
 			CONST INT SIZE = 256;
 			CHAR sz_buffer[SIZE]{};
 			HWND hEdit = GetDlgItem(hwnd, IDC_EDIT_ADD_ITEM);
 			SendMessage(hEdit, WM_GETTEXT, SIZE, (LPARAM)sz_buffer);
 
-			// 2) Получаем родительское окно:
+			// 2) РџРѕР»СѓС‡Р°РµРј СЂРѕРґРёС‚РµР»СЊСЃРєРѕРµ РѕРєРЅРѕ:
 			HWND hParent = GetParent(hwnd);
 
-			// 3) Получаем дескриптор ListBox:
+			// 3) РџРѕР»СѓС‡Р°РµРј РґРµСЃРєСЂРёРїС‚РѕСЂ ListBox:
 			HWND hListBox = GetDlgItem(hParent, IDC_LIST);
 
-			// 4) Добавляем текст в ListBox:
+			// 4) Р”РѕР±Р°РІР»СЏРµРј С‚РµРєСЃС‚ РІ ListBox:
 			SendMessage(hListBox, LB_ADDSTRING, 0, (LPARAM)sz_buffer);
 		}
 		
 		case IDCANCEL: EndDialog(hwnd, 0); break;
 		}
 		break;
-	case WM_CLOSE: EndDialog(hwnd, 0); // Активация функции закрытия окна при помощи крестика!
+	case WM_CLOSE: EndDialog(hwnd, 0); // РђРєС‚РёРІР°С†РёСЏ С„СѓРЅРєС†РёРё Р·Р°РєСЂС‹С‚РёСЏ РѕРєРЅР° РїСЂРё РїРѕРјРѕС‰Рё РєСЂРµСЃС‚РёРєР°!
 		break;
 	}
 	return FALSE;
