@@ -91,7 +91,7 @@ BOOL CALLBACK DlgProcAddItem(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		case IDCANCEL: EndDialog(hwnd, 0); break;
 		}
 		break;
-	case WM_CLOSE: EndDialog(hwnd, 0);
+	case WM_CLOSE: EndDialog(hwnd, 0); // Активация функции закрытия окна при помощи крестика!
 		break;
 	}
 	return FALSE;
