@@ -196,6 +196,7 @@ INT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		static WORD operation = 0;
 		static BOOL	input = FALSE;
 		static BOOL operation_input = FALSE;
+		
 
 		SetFocus(hwnd);		//Для того чтобы всегда работала клавиатура!
 
@@ -208,6 +209,7 @@ INT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			if (operation_input) 
 			{ 
 				SendMessage(hEditDisplay, WM_SETTEXT, 0, (LPARAM)"");
+				operation_input = FALSE;
 			}
 			sz_digit[0] = LOWORD(wParam) - IDC_BUTTON_0 + '0';
 			SendMessage(hEditDisplay, WM_GETTEXT, SIZE, (LPARAM)sz_display);
@@ -262,7 +264,7 @@ INT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 
 				//input = FALSE;
 
-				if (operation)
+				if (operation && input)
 				{
 					SendMessage(hwnd, WM_COMMAND, LOWORD(IDC_BUTTON_EQUAL), 0);
 				}
