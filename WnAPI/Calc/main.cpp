@@ -13,7 +13,7 @@ CONST CHAR* g_OPERATIONS[] = { "+","-","*","/" };
 
 INT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 INT GetTitleBarHeight(HWND hwnd);
-
+VOID SetSkin(HWND hwnd, CONST CHAR skin[]);
 INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, INT nCmdShow)
 {
 	float a = -34.01;
@@ -128,7 +128,7 @@ INT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			g_i_BUTTON_DOUBLE_SIZE, g_i_BUTTON_SIZE,
 			LR_LOADFROMFILE
 		);
-		//
+		//вывод на экран
 		SendMessage(hButton_0, BM_SETIMAGE, IMAGE_BITMAP, (LPARAM)bmpButton_0);
 
 		CreateWindowEx
@@ -195,7 +195,7 @@ INT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 
 		);
 
-
+		SetSkin(hwnd, "square_blue");
 
 	}
 	break;
@@ -354,4 +354,9 @@ INT GetTitleBarHeight(HWND hwnd)
 	GetClientRect(hwnd, &client_rect);
 	INT title_bar_height = (window_rect.bottom - window_rect.top) - (client_rect.bottom - client_rect.top);
 	return title_bar_height;
+}
+
+VOID SetSkin(HWND hwnd, const CHAR skin[])
+{
+	
 }
