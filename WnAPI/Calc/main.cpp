@@ -110,10 +110,10 @@ INT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 
 			}
 		}
-		CreateWindowEx
+		HWND hButton_0 = CreateWindowEx
 		(
 			NULL, "Button", "0",
-			WS_CHILD | WS_VISIBLE,
+			WS_CHILD | WS_VISIBLE | BS_BITMAP,
 			BUTTON_SHIFT_X(0), BUTTON_SHIFT_Y(3),	//g_i_BUTTON_START_X, g_i_BUTTON_START_Y + (g_i_BUTTON_SIZE + g_i_INTERVAL) * 3,
 			g_i_BUTTON_DOUBLE_SIZE, g_i_BUTTON_SIZE,
 			hwnd,
@@ -121,6 +121,16 @@ INT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			GetModuleHandle(NULL),
 			NULL
 		);
+		HBITMAP bmpButton_0 = (HBITMAP)LoadImage
+		(
+			NULL, "ButtonsBMP\\button_0.bmp", 
+			IMAGE_BITMAP,
+			g_i_BUTTON_DOUBLE_SIZE, g_i_BUTTON_SIZE,
+			LR_LOADFROMFILE
+		);
+		//
+		SendMessage(hButton_0, BM_SETIMAGE, IMAGE_BITMAP, (LPARAM)bmpButton_0);
+
 		CreateWindowEx
 		(
 			NULL, "Button", ".",
