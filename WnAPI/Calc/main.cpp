@@ -196,7 +196,7 @@ INT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		static WORD operation = 0;
 		static BOOL	input = FALSE;
 		static BOOL operation_input = FALSE;
-		
+		static BOOL equal_pressed = FALSE;
 
 		SetFocus(hwnd);		//Для того чтобы всегда работала клавиатура!
 
@@ -206,10 +206,10 @@ INT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		CHAR sz_digit[2]{};
 		if (LOWORD(wParam) >= IDC_BUTTON_0 && LOWORD(wParam) <= IDC_BUTTON_9)
 		{
-			if (operation_input) 
+			if (operation_input || equal_pressed) 
 			{ 
 				SendMessage(hEditDisplay, WM_SETTEXT, 0, (LPARAM)"");
-				operation_input = FALSE;
+				operation_input = equal_pressed = FALSE;
 			}
 			sz_digit[0] = LOWORD(wParam) - IDC_BUTTON_0 + '0';
 			SendMessage(hEditDisplay, WM_GETTEXT, SIZE, (LPARAM)sz_display);
@@ -254,7 +254,9 @@ INT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			input = operation_input = FALSE;
 			SendMessage(hEditDisplay, WM_SETTEXT, 0, (LPARAM)"0");
 		}
-		//////////////////////////////////////////////////////////////////////////
+		/////////////////////////////////////////////////////////////////////////////
+		/////////////////////////////////////////////////////////////////////////////
+		/////////////////////////////////////////////////////////////////////////////
 		if (LOWORD(wParam) >= IDC_BUTTON_PLUS && LOWORD(wParam) <= IDC_BUTTON_SLASH)
 		{
 			SendMessage(hEditDisplay,WM_GETTEXT,SIZE,(LPARAM)sz_display);
@@ -271,6 +273,7 @@ INT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 
 				operation = LOWORD(wParam);
 				operation_input = TRUE;
+				equal_pressed = FALSE;
 			}
 		}
 		if (LOWORD(wParam) == IDC_BUTTON_EQUAL)
@@ -290,6 +293,7 @@ INT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 				}
 
 				operation_input = FALSE;
+				equal_pressed = TRUE;
 				sprintf(sz_display, "%g", a);
 				SendMessage(hEditDisplay, WM_SETTEXT, 0, (LPARAM)sz_display);
 			}
