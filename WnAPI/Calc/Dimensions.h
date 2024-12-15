@@ -6,7 +6,9 @@ CONST INT g_i_INTERVAL = 5;		//расстояние между кнопками
 CONST INT g_i_BUTTON_DOUBLE_SIZE = g_i_BUTTON_SIZE * 2 + g_i_INTERVAL; // Размер кнопки в пикселях, для увеличенной в размере кнопки
 
 CONST INT g_i_SCREEN_WIDTH = g_i_BUTTON_SIZE * 5 + g_i_INTERVAL * 4;
-CONST INT g_i_SCREEN_HEIGHT = 22;
+CONST INT g_i_SCREEN_HEIGHT = 48;
+CONST INT g_i_FONT_HEIGHT = g_i_SCREEN_HEIGHT - 2;
+CONST INT g_i_FONT_WIDTH = g_i_SCREEN_HEIGHT/2;
 
 CONST INT g_i_START_X = 10;
 CONST INT g_i_START_Y = 10;
